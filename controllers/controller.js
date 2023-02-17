@@ -317,7 +317,7 @@ const controller = {
             var spanDate = "<span id=\"nav_date\">" + fullDateString + "</span>";
             var spanSession = "<span id=\"nav_session\">" + req.query.session + "</span>";
             var nav = "<p id=\"navigation\"><a href=\"/sessions\">All Sessions</a> / " + spanDate + " - " + spanSession + "</p>"
-
+			console.log("Load Session Attendance - A");
             if (req.query.baptism == null){
                 db.findMany(Attendance, {date: date, session: req.query.session}, {}, (data) => {
                     const tempArray = [];
@@ -330,10 +330,12 @@ const controller = {
                         });
                     }
                     db.countDocuments(Attendance, {date: date, session: req.query.session}, (count) => {
-                        //console.log(tempArray);
-                        //console.log(count);
+                        console.log(tempArray);
+                        console.log(count);
                         res.render("session", { navigation: nav, ymddate: dateString, session: req.query.session, data: tempArray, count });
                     });
+					
+					console.log("Load Session Attendance - B");
                 });
             }
             else {
@@ -348,10 +350,12 @@ const controller = {
                         });
                     }
                     db.countDocuments(Attendance, {date: date, session: req.query.session}, (count) => {
-                        //console.log(tempArray);
-                        //console.log(count);
+                        console.log(tempArray);
+                        console.log(count);
                         res.render("session", { navigation: nav, ymddate: dateString, session: req.query.session, data: tempArray, count });
                     });
+					
+					console.log("Load Session Attendance - C");
                 });
             }
         }
