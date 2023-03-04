@@ -103,12 +103,20 @@ const controller = {
             res.redirect("/login");
         } else {
             if (req.query.session == null){
-                db.findMany(Session, {}, {ymddate: { $dateToString: {date: "$date", format: "%Y-%m-%d" }}, session: 1}, (data) => {
+                db.findMany(Session, {}, null, (data) => {
+                    data.forEach((item) => {
+                        var newDate = item.date.getFullYear() + '-' + (item.date.getMonth()+1) + '-' + item.date.getDate();
+                        item.date = newDate;
+                    });
                     res.render("sessions_repo", data); 
                 });
             }
             else{
-                db.findMany(Session, {session: req.query.session}, {ymddate: { $dateToString: {date: "$date", format: "%Y-%m-%d" }}, session: 1}, (data) => {
+                db.findMany(Session, {session: req.query.session}, null, (data) => {
+                    data.forEach((item) => {
+                        var newDate = item.date.getFullYear() + '-' + (item.date.getMonth()+1) + '-' + item.date.getDate();
+                        item.date = newDate;
+                    });
                     res.render("sessions_repo", data); 
                 });
             }
