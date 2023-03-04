@@ -104,6 +104,7 @@ const controller = {
         } else {
             if (req.query.session == null){
                 db.findMany(Session, {}, {ymddate: { $dateToString: {date: "$date", format: "%Y-%m-%d" }}, session: "$session"}, (data) => {
+                    console.log(data);
                     res.render("sessions_repo", data); 
                 });
             }
