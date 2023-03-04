@@ -104,26 +104,12 @@ const controller = {
         } else {
             if (req.query.session == null){
                 db.findMany(Session, {}, {_id: 0, ymddate: { $dateToString: {date: "$date", format: "%Y-%m-%d" }}, session: 1}, (data) => {
-                    const tempArray = [];
-                    if (data.length !== 0){
-                        data.forEach(doc => tempArray.push(doc.toObject()));
-                    }
-                    db.countDocuments(Session, {}, (count) => {
-                        res.render("sessions_repo", { data: tempArray, count });
-                    }); 
+                    res.render("sessions_repo", data); 
                 });
             }
             else{
                 db.findMany(Session, {session: req.query.session}, {_id: 0, ymddate: { $dateToString: {date: "$date", format: "%Y-%m-%d" }}, session: 1}, (data) => {
-                    const tempArray = [];
-                    if (data.length !== 0){
-                        data.forEach(doc => tempArray.push(doc.toObject()));
-                    }
-                    db.countDocuments(Session, {session: req.query.session}, (count) => {
-                        //console.log(tempArray);
-                        //console.log(count);
-                        res.render("sessions_repo", { data: tempArray, count });
-                    }); 
+                    res.render("sessions_repo", data); 
                 });
             }
         }
