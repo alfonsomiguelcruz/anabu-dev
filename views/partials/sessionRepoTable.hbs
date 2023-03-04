@@ -1,7 +1,7 @@
 <tr>
     <td>
-        <a href="/sessionAttendance?date={{ ymddate }}&session={{ session }}"
-            >{{ ymddate }}</a
+        <a href="/sessionAttendance?date={{ date }}&session={{ session }}"
+            >{{ date }}</a
         >
     </td>
     <td>
@@ -12,7 +12,7 @@
             type="button"
 			class="delete fa-button"
 			aria-label="delete-button"
-            data-date = {{ ymddate }}
+            data-date = {{ date }}
             data-session = {{ session }}
         >
             <i class="fa-solid fa-trash"></i>
