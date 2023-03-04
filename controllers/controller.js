@@ -108,6 +108,7 @@ const controller = {
                         var newDate = item.date.getFullYear() + '-' + (item.date.getMonth()+1) + '-' + item.date.getDate();
                         item.date = newDate;
                     });
+					console.log(data);
                     res.render("sessions_repo", data); 
                 });
             }
@@ -117,6 +118,7 @@ const controller = {
                         var newDate = item.date.getFullYear() + '-' + (item.date.getMonth()+1) + '-' + item.date.getDate();
                         item.date = newDate;
                     });
+					console.log(data);
                     res.render("sessions_repo", data); 
                 });
             }
