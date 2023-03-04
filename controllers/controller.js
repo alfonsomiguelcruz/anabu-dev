@@ -103,12 +103,12 @@ const controller = {
             res.redirect("/login");
         } else {
             if (req.query.session == null){
-                db.findMany(Session, {}, {_id: 0, ymddate: { $dateToString: {date: "$date", format: "%Y-%m-%d" }}, session: 1}, (data) => {
+                db.findMany(Session, {}, {ymddate: { $dateToString: {date: "$date", format: "%Y-%m-%d" }}, session: "$session"}, (data) => {
                     res.render("sessions_repo", data); 
                 });
             }
             else{
-                db.findMany(Session, {session: req.query.session}, {_id: 0, ymddate: { $dateToString: {date: "$date", format: "%Y-%m-%d" }}, session: 1}, (data) => {
+                db.findMany(Session, {session: req.query.session}, {ymddate: { $dateToString: {date: "$date", format: "%Y-%m-%d" }}, session: "$session"}, (data) => {
                     res.render("sessions_repo", data); 
                 });
             }
